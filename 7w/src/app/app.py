@@ -1,3 +1,4 @@
+```java
 # ==========================================================
 # app.py
 # 7주차 RAG Chatbot - Streamlit
@@ -167,7 +168,7 @@ def build_rag():
 # 4. RAG 생성
 # ==========================================================
 
-retriever, llm = build_rag()
+retriever, llm = ????????????????
 
 # ==========================================================
 # 5. 대화형 RAG 함수
@@ -214,7 +215,7 @@ def ask_chat_rag(
     # 관련 문서 검색
     # ------------------------------------------------------
 
-    docs = retriever.invoke(search_query)
+    docs = retriever.invoke(??????????????????? )
 
     # ------------------------------------------------------
     # 검색된 문서 하나의 문자열로 결합
@@ -242,7 +243,7 @@ def ask_chat_rag(
 {file_name}
 
 내용:
-{doc.page_content}
+{????????????????????????}
 """
         )
 
@@ -263,8 +264,8 @@ def ask_chat_rag(
         )
 
         history_parts.append(
-            f"{role}: "
-            f"{message['content']}"
+            f"{??????????????}: "
+            f"{???????????????????????}"
         )
 
     history_text = "\n".join(history_parts  )
@@ -316,11 +317,9 @@ def ask_chat_rag(
     # Ollama 답변 생성
     # ------------------------------------------------------
 
-    response = llm.invoke(prompt)
-    
-    answer = response.content 
+    response = llm.invoke(prompt  )
 
-    return (answer, docs, search_query)
+    return (??????????????????,  docs,  search_query  )
 
 # ==========================================================
 # 6. Session State 초기화
@@ -349,7 +348,7 @@ for message in (st.session_state.messages ):
 
     with st.chat_message( message["role"] ):
 
-        st.write(message["content"])
+        st.write(????????  )
 
         # --------------------------------------------------
         # AI 답변에 검색 정보가 저장되어 있으면 표시
@@ -397,7 +396,7 @@ if ( st.session_state.pending_question is not None):
         with st.spinner( "답변을 생성하고 있습니다..." ):
 
             answer, docs, search_query = (
-                ask_chat_rag( question, previous_history)
+                ask_chat_rag(  question, previous_history)
             )
 
     # ------------------------------------------------------
@@ -471,3 +470,4 @@ else:
         # --------------------------------------------------
 
         st.rerun()
+```

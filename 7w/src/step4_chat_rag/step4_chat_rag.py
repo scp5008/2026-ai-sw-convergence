@@ -1,4 +1,3 @@
-```python
 from pathlib import Path
 
 from langchain_community.document_loaders import PyPDFLoader
@@ -34,7 +33,8 @@ for pdf_file in pdf_files:
     pages = loader.load()
 
     for page in pages:
-        page.metadata["file_name"] = ???????????????????????????
+        # 수정: 메타데이터에는 올바른 파일명 문자열만 저장
+        page.metadata["file_name"] = pdf_file.name
 
     documents.extend(pages)
 
@@ -93,11 +93,11 @@ def ask_chat_rag(
     chat_history
 ):
 
-    # 직전 사용자 질문 찾기
+    # 직전 사용자 질문 찾기 (수정: question이 아니라 chat_history를 순회해야 함)
     previous_question = ""
 
     for message in reversed(
-        ??????????????????????????
+        chat_history
     ):
 
         if message["role"] == "user":
@@ -225,12 +225,11 @@ while True:
 
     # 대화 저장
     chat_history.append({
-        "role": ????????,
-        "content": ????????????????????
+        "role": "user",
+        "content": question
     })
 
     chat_history.append({
         "role": "assistant",
         "content": answer
     })
-```
